@@ -1,0 +1,242 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+void ob_crystal(string location, int &crystal, int &marshc, int &werec, int &elvenc){
+
+    if (location == "Marsh of the Undead"){
+        if (marshc == 0){
+            marshc = 1;
+            //cout << "You got a objectos crystal" << endl;
+        }
+    }
+    if (location == "Werewolf Hill"){
+        if (werec == 0){
+            werec = 1;
+        }
+    }
+    if (location == "Elven Waterfall"){
+        if (elvenc == 0){
+            elvenc = 1;
+        }
+    }
+    cout << werec << marshc << elvenc << endl;
+    //crystal = werec + marshc + elvenc;
+    //return crystal;
+}
+
+void enchanted_forest(string &location, int &days, int &crystal, char &mov){
+    if ((mov == 'N') || (mov == 'n')){
+        location = "Marsh of the Undead";
+        //ob_crystal(location, crystal);
+        days++;
+    }
+    else if ((mov == 'E') || (mov == 'e')){
+        location = "Swamps of Despair";
+        days = days + 2;
+    }
+    else if ((mov == 'W') || (mov == 'w')){
+        location = "Bridge of Death";
+        //days++;
+    }
+    else if ((mov == 'S') || (mov == 's')){
+        location = "Vampire Cove";
+        days = days + 3;
+    }
+    else{
+        cout << "Wrong input, please enter N,E,W,S" << endl;
+    }
+}
+
+void marsh_undead(string &location, int &days, int &crystal, char &mov, bool &dead){
+    if ((mov == 'N') || (mov == 'n')){
+        location = "Marsh of the Undead";
+        days++;
+    }
+    else if ((mov == 'E') || (mov == 'e')){
+        location = "Sands of Quick";
+        days++;
+        cout << "You are dead" << endl;
+        dead = true;
+    }
+    else if ((mov == 'W') || (mov == 'w')){
+        location = "Marsh of the Undead";
+        days++;
+    }
+    else if ((mov == 'S') || (mov == 's')){
+        location = "Enchanted Forest";
+        days++;
+    }
+    else{
+        cout << "Wrong input, please enter N,E,W,S" <<endl;
+    }
+}
+
+void vampire_cove(string &location, int &days, int &crystal, char &mov){
+    if ((mov == 'N') || (mov == 'n')){
+        location = "Enchanted Forest";
+        days = days + 3;
+    }
+    else if ((mov == 'E') || (mov == 'e')){
+        location = "Vampire Cove";
+        days++;
+    }
+    else if ((mov == 'W') || (mov == 'w')){
+        location = "Vampire Cove";
+        days++;
+    }
+    else if ((mov == 'S') || (mov == 's')){
+        location = "Werewolf Hill";
+        //crystal = ob_crystal(location, crystal);
+        days = days + 3;
+    }
+    else{
+        cout << "Wrong input, please enter N,E,W,S" << endl;
+    }
+}
+
+void werewolf_hill(string &location, int &days, int &crystal, char &mov){
+    if ((mov == 'N') || (mov == 'n')){
+        location = "Vampire Cove";
+        days = days + 3;
+    }
+    else if ((mov == 'E') || (mov == 'e')){
+        location = "Werewolf Hill";
+        days++;
+    }
+    else if ((mov == 'W') || (mov == 'w')){
+        location = "Werewolf Hill";
+        days++;
+    }
+    else if ((mov == 'S') || (mov == 's')){
+        location = "Werewolf Hill";
+        days++;
+    }
+    else{
+        cout << "Wrong input, please enter N,E,W,S" << endl;
+    }
+}
+
+void swamps_despair(string &location, int &days, int &crystal, char &mov, bool &dead){
+    if ((mov == 'N') || (mov == 'n')){
+        location = "Sands of Quick";
+        days = days + 2;
+        dead = true;
+    }
+    else if ((mov == 'E') || (mov == 'e')){
+        location = "Swamps of Despair";
+        days++;
+    }
+    else if ((mov == 'W') || (mov == 'w')){
+        location = "Enchanted Forest";
+        days = days + 2;
+    }
+    else if ((mov == 'S') || (mov == 's')){
+        location = "Elven Waterfall";
+        //crystal = ob_crystal(location, crystal);
+        days++;
+    }
+    else{
+        cout << "Wrong input, please enter N,E,W,S" << endl;
+    }
+}
+
+void elven_waterfall(string &location, int &days, int &crystal, char &mov){
+    if ((mov == 'N') || (mov == 'n')){
+        location = "Swamps of Despair";
+        days++;
+    }
+    else if ((mov == 'E') || (mov == 'e')){
+        location = "Elven Waterfall";
+        days++;
+    }
+    else if ((mov == 'W') || (mov == 'w')){
+        location = "Elven Waterfall";
+        days++;
+    }
+    else if ((mov == 'S') || (mov == 's')){
+        location = "Elven Waterfall";
+        days++;
+    }
+    else{
+        cout << "Wrong input, please enter N,E,W,S" << endl;
+    }
+}
+
+void bridge_death(string &location, int &days, int &crystal, char &mov){
+    //if (crystal == 3){
+        if ((mov == 'N') || (mov == 'n')){
+            location = "Bridge of Death";
+            days++;
+        }
+        else if ((mov == 'E') || (mov == 'e')){
+            location = "Enchanted Forest";
+            days++;
+        }
+        else if ((mov == 'W') || (mov == 'w') && (crystal == 3)){
+            location = "Wizard's Castle";
+            days = days + 5;
+        }
+        else if ((mov == 'S') || (mov == 's')){
+            location = "Bridge of Death";
+            days++;
+        }
+        else if ((mov == 'w') || (mov == 'W') && (crystal < 3)){
+            days++;
+            cout << "You have only " << crystal << " crystals. You need " << 3 - crystal <<" more to go to Wizard's Castle" << endl;
+        }
+        else{
+            cout << "Wrong input, please enter N,E,W,S" << endl;
+        }
+}
+
+
+int main()
+{
+    int marshc = 0;
+    int werec = 0;
+    int elvenc = 0;
+
+    bool dead = false;
+    char mov = ' ';
+    int crystal = marshc + werec + elvenc;
+    int days = 0;
+    string location = "Enchanted Forest"; //Starting Location
+
+    while ((days < 31) || (dead == false)){
+        cout << "Please enter the direction --> N: North E: East W: West S: South" << endl;
+        cin >> mov;
+
+        if (location == "Enchanted Forest"){
+            enchanted_forest(location, days, crystal, mov);
+        }
+        else if (location == "Marsh of the Undead"){
+            marsh_undead(location, days, crystal, mov, dead);
+            ob_crystal(location,crystal,marshc,werec,elvenc);
+        }
+        else if (location == "Vampire Cove"){
+            vampire_cove(location, days, crystal, mov);
+        }
+        else if (location == "Werewolf Hill"){
+            werewolf_hill(location, days, crystal, mov);
+        }
+        else if (location == "Swamps of Despair"){
+            swamps_despair(location, days, crystal, mov, dead);
+        }
+        else if (location == "Elven Waterfall"){
+            elven_waterfall(location, days, crystal, mov);
+        }
+        else if (location == "Bridge of Death"){
+            bridge_death(location, days, crystal, mov);
+        }
+        else if (location == "Wizard's Castle"){
+            cout << "congo you won" << endl;
+        }
+        cout << "days: " << days << endl;
+        cout << "crystals: " << crystal << endl;
+        cout << "location: " << location << endl;
+    }
+
+    return 0;
+}
